@@ -1,6 +1,7 @@
-package com.example.quizgame.activities
+package com.example.quizgame.ui.activities
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -25,16 +26,31 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_notifications,
+                R.id.fragmentGame
             )
         )
 
-        val listWithoutAppBar = setOf(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+        val listWithoutAppBar = setOf(
+            R.id.navigation_home,
+            R.id.navigation_dashboard,
+            R.id.navigation_notifications,
+            R.id.fragmentGame
+        )
 
-        navController.addOnDestinationChangedListener{_, destination,_ ->
-            if (listWithoutAppBar.contains(destination.id)){
+        val listWithoutBottomNav = setOf(R.id.fragmentGame)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (listWithoutBottomNav.contains(destination.id)) {
+                navView.visibility = View.GONE
+            } else {
+                navView.visibility = View.VISIBLE
+            }
+            if (listWithoutAppBar.contains(destination.id)) {
                 supportActionBar?.hide()
-            }else
+            } else
                 supportActionBar?.show()
         }
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -7,20 +7,30 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.quizgame.ui.home.HomeFragment"
+        android:name="com.example.quizgame.ui.fragments.home.HomeFragment"
         android:label="Quiz"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.quizgame.ui.dashboard.DashboardFragment"
+        android:name="com.example.quizgame.ui.fragments.history.HistoryFragment"
         android:label="History"
         tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.quizgame.ui.notifications.NotificationsFragment"
+        android:name="com.example.quizgame.ui.fragments.settings.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings"/>
+    <fragment
+        android:id="@+id/fragmentGame"
+        android:name="com.example.quizgame.ui.fragments.game.FragmentGame"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/fragmentResult"
+        android:name="com.example.quizgame.ui.fragments.result.FragmentResult"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" />
 
 </navigation>

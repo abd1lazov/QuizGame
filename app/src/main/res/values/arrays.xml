@@ -10,8 +10,8 @@
     <string-array name="category">
         <item>All</item>
         <item>Science and Nature</item>
-        <item>Science:Computers</item>
-        <item>Science:Mathematics</item>
+        <item>Computer science</item>
+        <item>Mathematics</item>
         <item>Mythology</item>
         <item>Sports</item>
         <item>Geography</item>
