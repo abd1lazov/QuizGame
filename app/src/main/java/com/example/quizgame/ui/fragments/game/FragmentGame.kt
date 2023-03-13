@@ -33,5 +33,6 @@ class FragmentGame : Fragment() {
         }
     }
     private fun initViews() {
+
     }
 }
