@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizgame.R
 import com.example.quizgame.databinding.FragmentGameBinding
 import com.example.quizgame.ui.fragments.game.adapter.GameAdapter
@@ -33,6 +32,5 @@ class FragmentGame : Fragment() {
         }
     }
     private fun initViews() {
-
     }
 }
