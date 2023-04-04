@@ -9,16 +9,37 @@
         android:id="@+id/navigation_home"
         android:name="com.example.quizgame.ui.fragments.home.HomeFragment"
         android:label="Quiz"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_fragmentGame"
+            app:destination="@id/fragmentGame" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_history"
         android:name="com.example.quizgame.ui.fragments.history.HistoryFragment"
         android:label="History"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history">
+
+        <argument
+            android:name="category"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="difficulty"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="correctAnswers"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_settings"
         android:name="com.example.quizgame.ui.fragments.settings.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings"/>
@@ -26,11 +47,69 @@
         android:id="@+id/fragmentGame"
         android:name="com.example.quizgame.ui.fragments.game.FragmentGame"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+        <argument
+            android:name="amount"
+            app:argType="integer" />
+
+        <argument
+            android:name="category"
+            app:argType="integer" />
+
+        <argument
+            android:name="difficulty"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="category_name"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_quizFragment_to_resultFragment"
+            app:destination="@id/fragmentResult"
+            app:popUpTo="@id/mobile_navigation" />
+        <action
+            android:id="@+id/action_fragmentGame_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_fragmentGame_to_fragmentResult"
+            app:destination="@id/fragmentResult" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentResult"
         android:name="com.example.quizgame.ui.fragments.result.FragmentResult"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result">
+
+        <argument
+            android:name="category"
+            android:defaultValue=""
+            app:argType="string" />
+
+
+        <argument
+            android:name="corAnswer"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="result"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="difficultyName"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_resultFragment_to_mainFragment"
+            app:destination="@id/fragmentGame"
+            app:popUpTo="@id/mobile_navigation" />
+        <action
+            android:id="@+id/action_resultFragment_to_historyFragment"
+            app:destination="@id/navigation_history" />
+
+    </fragment>
 
 </navigation>

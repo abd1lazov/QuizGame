@@ -24,7 +24,18 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        setupData()
+        setupUI()
+        setupObservers()
+        setupListeners()
     }
+
+    open fun setupData(){}
+
+    abstract fun setupListeners()
+
+    abstract fun setupObservers()
+
+    abstract fun setupUI()
 
 }
