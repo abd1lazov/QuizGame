@@ -2,6 +2,7 @@ package com.example.quizgame.domain.useCases.history
 
 import com.example.quizgame.domain.entities.HistoryEntity
 import com.example.quizgame.domain.repositories.history.AddHistoryRepository
+import javax.inject.Inject
 
 class AddHistoryUseCase @Inject constructor(private val repository: AddHistoryRepository) {
 
