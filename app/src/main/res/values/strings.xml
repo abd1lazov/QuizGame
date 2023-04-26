@@ -28,4 +28,8 @@
     <string name="leave_feedback">Leave feedback</string>
     <string name="clear_history">Clear history</string>
     <string name="_14_march_2023_20_30">14 March 2023 20:30</string>
+    <string name="True">True</string>
+    <string name="False">False</string>
+    <string name="skip">skip</string>
+    <string name="_1_10">1/10</string>
 </resources>

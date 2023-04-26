@@ -38,6 +38,17 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="100dp" />
 
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_1_10"
+        android:textStyle="bold"
+        android:layout_below="@+id/slider_count"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="10dp"/>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
