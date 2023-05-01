@@ -10,7 +10,6 @@ import com.example.quizgame.databinding.ItemBooleanBinding
 import com.example.quizgame.databinding.ItemQzRvBinding
 import com.example.quizgame.domain.entities.GameEntity
 
-
 class GameAdapter : ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == R.layout.item_qz_rv) {
@@ -23,8 +22,6 @@ class GameAdapter : ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCal
             )
         }
     }
-
-
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val quiz = getItem(position)
@@ -62,7 +59,6 @@ class GameAdapter : ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCal
             binding.sliderCount.max = currentList.size
             binding.sliderCount.progress = absoluteAdapterPosition
 
-
         }
     }
     inner class BooleanViewHolder(private val binding: ItemBooleanBinding):
@@ -78,7 +74,6 @@ class GameAdapter : ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCal
             listQuiz.shuffle()
         }
     }
-
 }
 
 
