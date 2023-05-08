@@ -9,8 +9,7 @@ import com.example.quizgame.databinding.FragmentGameBinding
 import com.example.quizgame.databinding.ItemBooleanBinding
 import com.example.quizgame.databinding.ItemQzRvBinding
 import com.example.quizgame.domain.entities.GameEntity
-
-class GameAdapter : ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCallBack()) {
+class GameAdapter: ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == R.layout.item_qz_rv) {
             MultipleViewHolder(
@@ -22,7 +21,6 @@ class GameAdapter : ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCal
             )
         }
     }
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val quiz = getItem(position)
         if (holder.itemViewType == R.layout.item_qz_rv) {
@@ -42,7 +40,7 @@ class GameAdapter : ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCal
             R.layout.item_boolean
         }
     }
-    inner class MultipleViewHolder(private val binding: FragmentGameBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MultipleViewHolder(private val binding: ItemQzRvBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(game: GameEntity) {
             val listGame = mutableListOf<String>()
@@ -53,12 +51,14 @@ class GameAdapter : ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCal
                 }
             }
             listGame.shuffle()
+            MultipleViewHolderMethod()
+        }
 
+        private fun MultipleViewHolderMethod(binding: FragmentGameBinding) {
             val count = "${absoluteAdapterPosition + 1}/${currentList.size}"
             binding.tvProgress.text = count
             binding.sliderCount.max = currentList.size
             binding.sliderCount.progress = absoluteAdapterPosition
-
         }
     }
     inner class BooleanViewHolder(private val binding: ItemBooleanBinding):
