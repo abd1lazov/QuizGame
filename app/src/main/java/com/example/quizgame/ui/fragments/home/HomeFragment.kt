@@ -1,43 +1,53 @@
 package com.example.quizgame.ui.fragments.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.quizgame.R
+import com.example.quizgame.common.base.BaseFragment
+import com.example.quizgame.common.extensions.setDropSpinner
 import com.example.quizgame.databinding.FragmentHomeBinding
+import com.example.quizgame.domain.entities.CategoryEntity
 import com.google.android.material.slider.Slider
+import dagger.hilt.android.AndroidEntryPoint
 
-class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
+@AndroidEntryPoint
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), AdapterView.OnItemSelectedListener {
 
-    private lateinit var binding: FragmentHomeBinding
     private var category: Int = 0
     private var amount: Int = 0
     private var difficulty: String = ""
     private val bundle = Bundle()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        initViews()
-        initListeners()
-
-        return binding.root
+    override fun bind(): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(layoutInflater)
     }
+    override fun setupListeners() {
 
-    private fun initListeners() {
+        binding.slider.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
+            override fun onStartTrackingTouch(slider: Slider) {}
+            override fun onStopTrackingTouch(slider: Slider) {
+                amount = slider.value.toInt()
+                bundle.putInt("amo", amount)
+
+            }
+        })
+
         binding.btnStart.setOnClickListener {
-            findNavController().navigate(R.id.fragmentGame)
+            val amount = binding.tvAmount.text.toString().toInt()
+            val category = binding.spinner.selectedItem as CategoryEntity
+            val difficulty = binding.spinnerDifficulty.selectedItem
+            val categoryName = binding.spinner.selectedItem
         }
     }
+    override fun setupObservers() {
+        TODO("Not yet implemented")
+    }
+
+    override fun setupUI() {
+        val list = arrayListOf("any difficulty", "easy", "medium", "hard")
+        binding.spinnerDifficulty.adapter = setDropSpinner(list)    }
 
     private fun initViews() {
         ArrayAdapter.createFromResource(
@@ -60,14 +70,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 binding.spinnerDifficulty.adapter = adapter
                 binding.spinnerDifficulty.onItemSelectedListener = this
             }
-        binding.slider.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
-            override fun onStartTrackingTouch(slider: Slider) {}
-            override fun onStopTrackingTouch(slider: Slider) {
-                amount = slider.value.toInt()
-                bundle.putInt("amo", amount)
 
-            }
-        })
     }
 
     override fun onItemSelected(

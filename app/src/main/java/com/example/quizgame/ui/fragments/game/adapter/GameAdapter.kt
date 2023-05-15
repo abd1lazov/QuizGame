@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quizgame.R
 import com.example.quizgame.databinding.FragmentGameBinding
 import com.example.quizgame.databinding.ItemBooleanBinding
-import com.example.quizgame.databinding.ItemQzRvBinding
 import com.example.quizgame.domain.entities.GameEntity
-class GameAdapter: ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCallBack()) {
+class GameAdapter:
+    ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == R.layout.item_qz_rv) {
+        return if (viewType == R.layout.fragment_game) {
             MultipleViewHolder(
-                ItemQzRvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                FragmentGameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
         } else {
             BooleanViewHolder(
@@ -23,7 +23,7 @@ class GameAdapter: ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCall
     }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val quiz = getItem(position)
-        if (holder.itemViewType == R.layout.item_qz_rv) {
+        if (holder.itemViewType == R.layout.fragment_game) {
             holder as MultipleViewHolder
             holder.onBind(quiz)
         } else {
@@ -35,12 +35,12 @@ class GameAdapter: ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCall
     override fun getItemViewType(position: Int): Int {
         val quiz = getItem(position)
         return if(quiz.type == "multiple"){
-            R.layout.item_qz_rv
+            R.layout.fragment_game
         }else{
             R.layout.item_boolean
         }
     }
-    inner class MultipleViewHolder(private val binding: ItemQzRvBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MultipleViewHolder(private val binding: FragmentGameBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(game: GameEntity) {
             val listGame = mutableListOf<String>()
@@ -51,15 +51,11 @@ class GameAdapter: ListAdapter<GameEntity, RecyclerView.ViewHolder>(GameItemCall
                 }
             }
             listGame.shuffle()
-            MultipleViewHolderMethod()
-        }
 
-        private fun MultipleViewHolderMethod(binding: FragmentGameBinding) {
             val count = "${absoluteAdapterPosition + 1}/${currentList.size}"
             binding.tvProgress.text = count
-            binding.sliderCount.max = currentList.size
-            binding.sliderCount.progress = absoluteAdapterPosition
         }
+
     }
     inner class BooleanViewHolder(private val binding: ItemBooleanBinding):
         RecyclerView.ViewHolder(binding.root) {

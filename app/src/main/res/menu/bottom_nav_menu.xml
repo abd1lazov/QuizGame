@@ -9,13 +9,13 @@
         android:title=""/>
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_history"
         android:icon="@drawable/history"
         android:enabled="true"
         android:title="" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_settings"
         android:icon="@drawable/settings"
         android:enabled="true"
         android:title="" />
