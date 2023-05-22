@@ -1,5 +1,6 @@
 package com.example.quizgame.ui.fragments.settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,13 +20,22 @@ class SettingsFragment : Fragment() {
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
-        initViews()
         initListeners()
 
         return binding.root
     }
 
-    private fun initListeners() {}
+    private fun initListeners() {
+        ShareData()
+    }
 
-    private fun initViews() {}
+    fun ShareData() {
+        binding.linearShare.setOnClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.putExtra(Intent.EXTRA_TEXT, "Share this app")
+            intent.setType("text/plain")
+            startActivity(Intent.createChooser(intent, "Please select app: "))
+        }
+    }
 }

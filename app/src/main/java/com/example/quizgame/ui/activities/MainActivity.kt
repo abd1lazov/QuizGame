@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home,
+                R.id.homeFragment,
                 R.id.navigation_history,
                 R.id.navigation_settings,
                 R.id.fragmentGame
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         val listWithoutAppBar = setOf(
-            R.id.navigation_home,
+            R.id.homeFragment,
             R.id.navigation_history,
             R.id.navigation_settings,
             R.id.fragmentGame
