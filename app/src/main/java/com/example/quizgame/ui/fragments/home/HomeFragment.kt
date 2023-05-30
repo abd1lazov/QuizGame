@@ -3,17 +3,14 @@ package com.example.quizgame.ui.fragments.home
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.quizgame.R
 import com.example.quizgame.common.base.BaseFragment
 import com.example.quizgame.common.extensions.setDropSpinner
 import com.example.quizgame.databinding.FragmentHomeBinding
 import com.example.quizgame.domain.entities.CategoryEntity
 import com.google.android.material.slider.Slider
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combineLatest
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(){
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by activityViewModels()
 
@@ -25,6 +22,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
     override fun bind(): FragmentHomeBinding {
         return FragmentHomeBinding.inflate(layoutInflater)
     }
+
     override fun setupListeners() {
 
         binding.slider.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
@@ -43,6 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(){
             val categoryName = binding.spinner.selectedItem
         }
     }
+
     override fun setupObservers() {
 
 //        lifecycleScope.launchWhenCreated {
